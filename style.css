@@ -1,0 +1,250 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'Microsoft YaHei', sans-serif;
+  color: #fff;
+  background: radial-gradient(circle, #1a1a1a, #000);
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+}
+
+.message {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  position: relative;
+}
+
+.text-content {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.text-content.fade-out {
+  opacity: 0;
+}
+
+.timer {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1s ease;
+  text-align: center;
+}
+
+.timer.show {
+  opacity: 1;
+}
+
+.timer p {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.timer span {
+  color: #ff4081;
+  font-weight: bold;
+}
+
+.video-container {
+  margin-top: 2rem;
+  width: 600px;
+  max-width: 90%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 64, 129, 0.3);
+}
+
+video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ff4081;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: #fff;
+}
+
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: fall linear forwards;
+  color: #ff4081;
+  text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(50vh) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+audio {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0.5;
+}
+
+audio:hover {
+  opacity: 1;
+}
+
+.big-heart {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 200px;
+  color: #ff4081;
+  text-shadow: 0 0 20px #ff4081, 0 0 40px #ff4081;
+  animation: float 6s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.big-heart:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+.mini-heart {
+  position: absolute;
+  font-size: 30px;
+  animation: mini-float linear forwards;
+  color: #ff4081;
+  text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+  pointer-events: none;
+}
+
+@keyframes mini-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.play-btn {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #ff4081;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  z-index: 10000;
+}
+
+.play-btn:hover {
+  background-color: #ff7675;
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* 新增覆盖层样式 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.overlay-content {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px #ff4081;
+  animation: pulse 1.5s infinite;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  width: max-content;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
