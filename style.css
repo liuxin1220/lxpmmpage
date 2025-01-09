@@ -38,13 +38,17 @@ body {
 }
 
 .timer {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin: 2rem auto;
   opacity: 0;
   transition: opacity 1s ease;
   text-align: center;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 64, 129, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .timer.show {
@@ -52,8 +56,23 @@ body {
 }
 
 .timer p {
-  margin: 0.5rem 0;
-  font-size: 1.5rem;
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.timer .time-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff4081;
+  text-shadow: 0 0 10px #ff4081;
+  margin-top: 1rem;
+}
+
+.timer .time-text span {
+  display: inline-block;
+  min-width: 2.5em;
+  text-align: center;
 }
 
 .timer span {
@@ -187,11 +206,19 @@ audio:hover {
   }
 }
 
-.play-btn {
-  position: fixed;
-  bottom: 100px;
+.play-btn-container {
+  position: absolute;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10000;
+  width: 100%;
+  text-align: center;
+}
+
+.play-btn {
+  display: inline-block;
+  margin: 1rem auto 0;
   padding: 10px 20px;
   background-color: #ff4081;
   color: white;
@@ -200,7 +227,11 @@ audio:hover {
   font-size: 16px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
-  z-index: 10000;
+}
+
+.play-btn:hover {
+  background-color: #ff7675;
+  transform: scale(1.1);
 }
 
 .play-btn:hover {

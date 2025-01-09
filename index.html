@@ -19,12 +19,15 @@
         <p>如这永恒的星辰，</p>
         <p>永远闪耀。</p>
       </div>
-      <div class="timer">
-        <p>我们已经相爱了：</p>
-        <p><span id="days">0</span> 天</p>
-        <p><span id="hours">0</span> 小时</p>
-        <p><span id="minutes">0</span> 分钟</p>
-        <p><span id="seconds">0</span> 秒</p>
+      <div class="timer show-after-5s">
+        <p>我们已经在一起：</p>
+        <p class="time-text">
+          <span id="days">0</span>天
+          <span id="hours">0</span>小时
+          <br>
+          <span id="minutes">0</span>分钟
+          <span id="seconds">0</span>秒
+        </p>
       </div>
       <div class="video-container">
         <video controls autoplay muted loop>
@@ -43,9 +46,11 @@
     <source src="bgm.wav" type="audio/wav">
     您的浏览器不支持音频播放
   </audio>
-  <div class="play-btn" onclick="playMusic()">点击播放音乐</div>
   <div class="overlay">
     <div class="overlay-content">点击任意位置开始</div>
+  </div>
+  <div class="play-btn-container">
+    <div class="play-btn" onclick="playMusic()">点击播放音乐</div>
   </div>
   <script src="script.js"></script>
 </body>

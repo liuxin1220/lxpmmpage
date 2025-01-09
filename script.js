@@ -149,6 +149,42 @@ function updateTimer() {
 // 初始化计时器
 let timerStarted = false;
 
+// 计时器实时更新
+function startTimer() {
+  setInterval(updateTimer, 1000);
+}
+
+// 文字显示1秒后跳转到计时器时间
+const timerElement = document.querySelector('.timer.show-after-5s');
+if (timerElement) {
+  // 确保元素可见
+  timerElement.style.display = 'block';
+  timerElement.style.opacity = 1;
+  
+  // 添加过渡样式
+  timerElement.style.transition = 'all 0.5s ease';
+  timerElement.style.position = 'relative';
+  
+  setTimeout(() => {
+    // 向上移动并淡出
+    timerElement.style.transform = 'translateY(-20px)';
+    timerElement.style.opacity = 0;
+    
+    setTimeout(() => {
+      // 启动实时计时器
+      startTimer();
+      
+      // 从下方移动并淡入
+      timerElement.style.transform = 'translateY(20px)';
+      timerElement.style.opacity = 0;
+      setTimeout(() => {
+        timerElement.style.transform = 'translateY(0)';
+        timerElement.style.opacity = 1;
+      }, 10);
+    }, 500); // 等待淡出完成
+  }, 1000); // 1秒后开始跳转
+}
+
 // 初始化音乐
 const bgm = document.getElementById('bgm');
 bgm.muted = true;
