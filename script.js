@@ -222,5 +222,19 @@ function playMusic() {
   }
 }
 
+// 视频播放控制
+function playVideo() {
+  const video = document.getElementById('love-video');
+  const playBtn = document.querySelector('.play-video-btn');
+  
+  if (video.paused) {
+    video.play();
+    playBtn.textContent = '暂停视频';
+  } else {
+    video.pause();
+    playBtn.textContent = '播放视频';
+  }
+}
+
 // 分享说明
 console.log('要分享这个网页，可以将整个love-page文件夹打包发送，或者将代码部署到服务器上。');
