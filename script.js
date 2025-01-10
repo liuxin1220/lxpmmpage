@@ -185,10 +185,24 @@ if (timerElement) {
   }, 1000); // 1秒后开始跳转
 }
 
+// 媒体预加载
+function preloadMedia() {
+  const video = document.getElementById('love-video');
+  const bgm = document.getElementById('bgm');
+  
+  // 预加载视频
+  video.preload = 'auto';
+  video.load();
+
+  // 预加载音频
+  bgm.preload = 'auto';
+  bgm.load();
+}
+
 // 初始化音乐
 const bgm = document.getElementById('bgm');
 bgm.muted = true;
-bgm.play();
+bgm.volume = 0.5; // 设置初始音量
 
 // 点击页面任意位置开始
 document.addEventListener('click', () => {
@@ -198,20 +212,49 @@ document.addEventListener('click', () => {
   
   // 隐藏覆盖层
   overlay.style.display = 'none';
-  
-  // 自动播放视频
+
+  // 播放视频
   video.play().then(() => {
     video.muted = false;
+    video.volume = 1;
   }).catch(error => {
     console.log('视频播放失败:', error);
     video.muted = true;
     video.play();
   });
-  
-  // 自动播放音乐
+
+  // 播放音乐
   bgm.muted = false;
   bgm.play();
+
+  // 性能监控
+  monitorPerformance();
 });
+
+// 性能监控
+function monitorPerformance() {
+  const video = document.getElementById('love-video');
+  const bgm = document.getElementById('bgm');
+
+  // 视频缓冲监控
+  video.addEventListener('progress', () => {
+    const buffered = video.buffered;
+    if (buffered.length > 0) {
+      console.log(`视频缓冲进度: ${(buffered.end(0) / video.duration * 100).toFixed(2)}%`);
+    }
+  });
+
+  // 音频缓冲监控
+  bgm.addEventListener('progress', () => {
+    const buffered = bgm.buffered;
+    if (buffered.length > 0) {
+      console.log(`音频缓冲进度: ${(buffered.end(0) / bgm.duration * 100).toFixed(2)}%`);
+    }
+  });
+}
+
+// 初始化
+initWechatSDK();
 
 // 初始化覆盖层
 const overlay = document.querySelector('.overlay');
@@ -222,3 +265,40 @@ animateFireworks();
 
 // 分享说明
 console.log('要分享这个网页，可以将整个love-page文件夹打包发送，或者将代码部署到服务器上。');
+
+// WeChat 视频播放处理
+function initWechatVideo() {
+  const video = document.getElementById('love-video');
+  
+  // 确保视频在微信中自动播放
+  video.muted = true;
+  video.playsInline = true;
+  
+  // 处理微信浏览器自动播放限制
+  document.addEventListener('WeixinJSBridgeReady', function() {
+    video.play();
+  }, false);
+  
+  // 处理触摸事件
+  document.addEventListener('touchstart', function() {
+    if (video.paused) {
+      video.play();
+    }
+  });
+  
+  // 处理视频加载
+  video.addEventListener('loadedmetadata', function() {
+    video.play();
+  });
+  
+  // 处理视频错误
+  video.addEventListener('error', function(e) {
+    console.error('视频播放错误:', e);
+    // 尝试重新加载视频
+    video.load();
+    setTimeout(() => video.play(), 1000);
+  });
+}
+
+// 初始化WeChat视频处理
+initWechatVideo();

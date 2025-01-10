@@ -67,6 +67,10 @@ body {
   transform: translate(-50%, -50%);
   z-index: 2;
   text-align: center;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .message {
@@ -237,6 +241,8 @@ video {
   -webkit-tap-highlight-color: transparent;
   object-fit: cover;
   background: #000;
+  margin: 0 auto;
+  muted: true;
 }
 
 .video-container {
