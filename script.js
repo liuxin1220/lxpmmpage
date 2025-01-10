@@ -192,13 +192,25 @@ bgm.play();
 
 // 点击页面任意位置开始
 document.addEventListener('click', () => {
-  const playBtn = document.querySelector('.play-btn');
   const overlay = document.querySelector('.overlay');
+  const video = document.getElementById('love-video');
+  const bgm = document.getElementById('bgm');
   
-  if (playBtn) {
-    playBtn.click();
-    overlay.style.display = 'none';
-  }
+  // 隐藏覆盖层
+  overlay.style.display = 'none';
+  
+  // 自动播放视频
+  video.play().then(() => {
+    video.muted = false;
+  }).catch(error => {
+    console.log('视频播放失败:', error);
+    video.muted = true;
+    video.play();
+  });
+  
+  // 自动播放音乐
+  bgm.muted = false;
+  bgm.play();
 });
 
 // 初始化覆盖层
@@ -207,34 +219,6 @@ overlay.style.display = 'block';
 
 animateFireworks();
 
-// 音乐播放控制
-function playMusic() {
-  const bgm = document.getElementById('bgm');
-  const playBtn = document.querySelector('.play-btn');
-  
-  if (bgm.paused) {
-    bgm.muted = false;
-    bgm.play();
-    playBtn.textContent = '暂停音乐';
-  } else {
-    bgm.pause();
-    playBtn.textContent = '播放音乐';
-  }
-}
-
-// 视频播放控制
-function playVideo() {
-  const video = document.getElementById('love-video');
-  const playBtn = document.querySelector('.play-video-btn');
-  
-  if (video.paused) {
-    video.play();
-    playBtn.textContent = '暂停视频';
-  } else {
-    video.pause();
-    playBtn.textContent = '播放视频';
-  }
-}
 
 // 分享说明
 console.log('要分享这个网页，可以将整个love-page文件夹打包发送，或者将代码部署到服务器上。');
