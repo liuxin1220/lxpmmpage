@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>给特别的你</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="message">
+      <div class="text-content">
+        <h1>亲爱的，</h1>
+        <p>从遇见你的那一刻起，</p>
+        <p>我的世界就变得不一样了。</p>
+        <p>你就像这漫天的烟花，</p>
+        <p>点亮了我生命的夜空。</p>
+        <p>愿我们的爱情，</p>
+        <p>如这永恒的星辰，</p>
+        <p>永远闪耀。</p>
+      </div>
+      <div class="timer show-after-5s">
+        <p>我们已经在一起：</p>
+        <p class="time-text">
+          <span id="days">0</span>天
+          <span id="hours">0</span>小时
+          <br>
+          <span id="minutes">0</span>分钟
+          <span id="seconds">0</span>秒
+        </p>
+      </div>
+      <div class="video-container">
+        <video id="love-video" controls loop playsinline muted>
+          <source src="./video/our-video1.mp4" type="video/mp4">
+          您的浏览器不支持视频播放
+        </video>
+      </div>
+    </div>
+  </div>
+  <canvas id="fireworks"></canvas>
+  <div class="hearts"></div>
+  <div class="big-heart">❤️</div>
+  <audio id="bgm" loop muted autoplay controls>
+    <source src="bgm.mp3" type="audio/mpeg">
+    <source src="bgm.ogg" type="audio/ogg">
+    <source src="bgm.wav" type="audio/wav">
+    您的浏览器不支持音频播放
+  </audio>
+  <div class="overlay">
+    <div class="overlay-content">点击任意位置开始</div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
